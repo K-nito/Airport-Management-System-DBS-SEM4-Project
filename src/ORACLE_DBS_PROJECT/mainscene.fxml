@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ORACLE_DBS_PROJECT.MainController">
+   <children>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+         <children>
+            <Label alignment="TOP_CENTER" text="WELCOME USER">
+               <font>
+                  <Font size="29.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+            <Button mnemonicParsing="false" onAction="#handleBooking" text="Book Ticket" />
+            <Button layoutX="284.0" layoutY="206.0" mnemonicParsing="false" onAction="#handleCanceling" text="Cancel Ticket" />
+            <Button layoutX="284.0" layoutY="219.0" mnemonicParsing="false" onAction="#handleStatusCheck" text="Check Ticket Status" />
+            <Button mnemonicParsing="false" onAction="#handleRegister" prefHeight="26.0" prefWidth="157.0" text="Register as new passenger" />
+            <Button layoutX="284.0" layoutY="232.0" mnemonicParsing="false" onAction="#handleReschedule" text="Reschedule Ticket" />
+            <Button mnemonicParsing="false" onAction="#handleLogOut" text="Log Out">
+               <VBox.margin>
+                  <Insets top="70.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+         <StackPane.margin>
+            <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+         </StackPane.margin>
+      </VBox>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</StackPane>
