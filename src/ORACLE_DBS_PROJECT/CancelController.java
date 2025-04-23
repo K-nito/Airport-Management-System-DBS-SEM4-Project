@@ -36,6 +36,20 @@ public class CancelController {
                 return;
             }
 
+            String checkQuery = "SELECT COUNT(*) FROM Ticket WHERE ticket_number = ?";
+            try (var ps = conn.prepareStatement(checkQuery)) {
+                ps.setString(1, ticketNumber);
+                var rs = ps.executeQuery();
+                if (rs.next() && rs.getInt(1) == 0) {
+                    showAlert("No ticket found with number: " + ticketNumber);
+                    Parent root = FXMLLoader.load(getClass().getResource("mainscene.fxml"));
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    stage.setScene(new Scene(root));
+                    stage.show();
+                    return;
+                }
+            }
+
             CallableStatement stmt = conn.prepareCall("{call Cancel_Ticket(?)}");
             stmt.setString(1, ticketNumber);
             stmt.execute();

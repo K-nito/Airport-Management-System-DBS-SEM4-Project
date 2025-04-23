@@ -39,6 +39,20 @@ public class RescheduleController {
                 return;
             }
 
+            String checkQuery = "SELECT COUNT(*) FROM Ticket WHERE ticket_number = ?";
+            try (var ps = conn.prepareStatement(checkQuery)) {
+                ps.setString(1, ticketNumber);
+                var rs = ps.executeQuery();
+                if (rs.next() && rs.getInt(1) == 0) {
+                    showAlert("No ticket found with number: " + ticketNumber);
+                    Parent root = FXMLLoader.load(getClass().getResource("mainscene.fxml"));
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    stage.setScene(new Scene(root));
+                    stage.show();
+                    return;
+                }
+            }
+
             // Convert string to TIMESTAMP
             Timestamp newArrivalTs = Timestamp.valueOf(newArrival);
             Timestamp newDepartureTs = Timestamp.valueOf(newDeparture);
